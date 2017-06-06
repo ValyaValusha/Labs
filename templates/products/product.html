@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                {% for image_item in product.productimage_set.all %}
+                    <div class="product-image-item">
+                        <a><img src="{{ image_item.image.url }}"  id="zoom_03" class="img-responsive GetBigger" data-zoom-image="{{ image_item.image.url }}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6">
+                <h1 class="text-center NameItem">
+                    {{ product.name }}
+                </h1>
+                <div class="TopLine">
+                    <div class="metal">
+                        <p>
+                            Металл: {{ product.metal }}
+                        </p>
+                    </div>
+                    <div class="weight">
+                        <p>
+                            Вес: {{ product.weight }}
+                        </p>
+                    </div>
+                    <div class="test">
+                        <p>
+                            Проба: {{ product.test }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="line"></div>
+                <div class="description">
+                    <p>
+                        Описание: {{ product.description }}
+                    </p>
+                </div>
+                <div class="line"></div>
+                <div class="PriceItem">
+                    <p>
+                        Цена: {{ product.price }} UAH
+                    </p>
+                </div>
+{#               <div class="add-to-card-btn">#}
+{#                    <div class="ChooseItem">#}
+        {#            <button class="btn btn-success">#}
+                        <form id="form_buying_product" class="form-inline" action="{% url 'basket_adding' %}">{% csrf_token %}
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="number" id="number">
+                            </div>
+                            <div class="form-group">
+                                 <button type="submit" id ="submit_btn" class="btn btn-success btn-buy"
+                                     data-product_id = "{{ product.id }}"
+                                     data-name = "{{ product.name }}"
+                                         data-price = "{{ product.price }}"
+                                 >
+                                       Купить
+
+{#                            <a href="">#}
+
+{#                                <span class="glyphicon glyphicon-heart HeartItem">#}
+{#                                </span>#}
+{#                                <span>Добавить в корзину</span>#}
+{#                            </a>#}
+                                 </button>
+                            </div>
+                        </form>
+{#                    </div>#}
+
+{#               # </div>#}
+{#                <div>#}
+{#                      <!-- Nav tabs -->#}
+{#                      <ul class="nav nav-tabs" role="tablist">#}
+{#                          <li role="presentation">#}
+{#                            <a href="#test" aria-controls="profile" role="tab" data-toggle="tab">#}
+{#                               Проба#}
+{#                            </a>#}
+{#                          </li>#}
+{#                        <li role="presentation" class="active">#}
+{#                            <a href="#description" aria-controls="home" role="tab" data-toggle="tab">#}
+{#                                Описание#}
+{#                            </a>#}
+{#                        </li>#}
+{##}
+{#                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>#}
+{#                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>#}
+{#                      </ul>#}
+{##}
+{#                      <!-- Tab panes -->#}
+{#                      <div class="tab-content product-description-tabs">#}
+{#                        <div role="tabpanel" class="tab-pane active" id="description">#}
+{#                            {{ product.description }}#}
+{#                        </div>#}
+{##}
+{#                        <div role="tabpanel" class="tab-pane" id="messages">#}
+{##}
+{#                        </div>#}
+{#                        <div role="tabpanel" class="tab-pane" id="settings">#}
+{##}
+{#                        </div>#}
+{#                          <div role="tabpanel" class="tab-pane" id="test">#}
+{#                            {{ product.test }}#}
+{#                        </div>#}
+{#                      </div>#}
+{#                </div>#}
+            </div>
+        </div>
+
+    </div>
+    <div class="line"></div>
+{% endblock %}
